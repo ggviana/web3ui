@@ -71,9 +71,9 @@ const ContractOwnerView: FC = () => {
         <Link
           color='teal.500'
           href={generateAddressExplorerLink(ownerContractAddress)}
-          fontSize='3xl'
+          fontSize='2xl'
           paddingBottom={2}
-          fontWeight='normal'
+          fontWeight='semibold'
           target='blank'
           style={{ textDecoration: 'none' }}
         >

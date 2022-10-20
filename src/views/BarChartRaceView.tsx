@@ -1,14 +1,14 @@
 import { useRef, useEffect, LegacyRef } from 'react';
 import { Runtime, Inspector } from '@observablehq/runtime';
-import notebook from '.';
+import barChartRaceDef from '../components/containers/barChartRace/barChartRaceDef';
 import { Link, Text, Container, Box } from '@chakra-ui/react';
 
-function BarChartRace() {
+function BarChartRaceView() {
   const chartRef = useRef();
 
   useEffect(() => {
     const runtime = new Runtime();
-    runtime.module(notebook, (name: string) => {
+    runtime.module(barChartRaceDef, (name: string) => {
       if (name === 'chart') return new Inspector(chartRef.current);
     });
     return () => runtime.dispose();
@@ -54,4 +54,4 @@ function BarChartRace() {
   );
 }
 
-export default BarChartRace;
+export default BarChartRaceView;

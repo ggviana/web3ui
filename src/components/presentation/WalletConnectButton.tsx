@@ -1,5 +1,5 @@
-import { Button } from '@chakra-ui/react';
 import { FC } from 'react';
+import { Button } from '@chakra-ui/react';
 
 interface Props {
   signerAddress?: string;
@@ -10,7 +10,6 @@ const WalletConnectButton: FC<Props> = ({ signerAddress, onClick }) => {
   return (
     <Button
       width='100%'
-      // alignSelf='flex-end'
       size='lg'
       colorScheme={`${signerAddress ? 'teal' : 'pink'}`}
       onClick={onClick}

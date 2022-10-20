@@ -63,9 +63,9 @@ const ContractStorageView: FC = () => {
         <Link
           color='teal.500'
           href={generateAddressExplorerLink(storageContractAddress)}
-          fontSize='3xl'
+          fontSize='2xl'
           paddingBottom={2}
-          fontWeight='normal'
+          fontWeight='semibold'
           target='blank'
           style={{ textDecoration: 'none' }}
         >
