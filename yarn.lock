@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"283f8a06a6d1ba0f@https://api.observablehq.com/d/283f8a06a6d1ba0f@3074.tgz?v=3":
-  version "3074.0.0"
-  resolved "https://api.observablehq.com/d/283f8a06a6d1ba0f@3074.tgz?v=3#4c07fd772ae1bedc9ac38d913928332604a2ab43"
-
 "@adobe/css-tools@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.0.1.tgz#b38b444ad3aa5fedbb15f2f746dcd934226a12dd"

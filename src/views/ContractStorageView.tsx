@@ -97,6 +97,7 @@ const ContractStorageView: FC = () => {
               <Input
                 placeholder='Enter number'
                 onChange={(e) => handleStoreInputValueChange(e.target.value)}
+                variant='filled'
               />
             </Flex>
           </HStack>

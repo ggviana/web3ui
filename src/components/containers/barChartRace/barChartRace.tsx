@@ -1,6 +1,6 @@
 import { useRef, useEffect, LegacyRef } from 'react';
 import { Runtime, Inspector } from '@observablehq/runtime';
-import notebook from '283f8a06a6d1ba0f';
+import notebook from '.';
 import { Link, Text, Container, Box } from '@chakra-ui/react';
 
 function BarChartRace() {
@@ -22,9 +22,7 @@ function BarChartRace() {
       borderRadius='lg'
       overflow='hidden'
     >
-      <Text fontSize='lg'>
-        Historical values in USD (March 2020 until October 2022)
-      </Text>
+      <Text fontSize='lg'>Historical value (USD)</Text>
       <Container
         maxWidth='container.xl'
         ref={chartRef as unknown as LegacyRef<HTMLDivElement> | undefined}
