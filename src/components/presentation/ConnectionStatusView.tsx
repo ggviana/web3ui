@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Heading, VStack, Text, HStack } from '@chakra-ui/react';
-import { useWeb3Adapter } from '../Web3Adapter/useWeb3Adapter';
+import { useWeb3Adapter } from '../../web3Adapter/useWeb3Adapter';
+import { capitalizeFirstLetter } from '../../utils/utils';
 
 interface Props {}
 
@@ -13,7 +14,9 @@ const ConnectionStatusView: FC<Props> = () => {
         <Heading as='h3' size='sm' width='20%'>
           Network
         </Heading>
-        <Text>{connectedNetwork}</Text>
+        <Text>
+          {connectedNetwork ? capitalizeFirstLetter(connectedNetwork) : ''}
+        </Text>
       </HStack>
       <HStack width='100%' height='2.5rem' alignItems='center'>
         <Heading as='h3' size='sm' width='20%'>

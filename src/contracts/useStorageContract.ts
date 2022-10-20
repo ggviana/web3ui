@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { useWeb3Adapter } from '../Web3Adapter/useWeb3Adapter';
+import { useWeb3Adapter } from '../web3Adapter/useWeb3Adapter';
 
 const ADDRESS = `0x6D269E03a93ABf0858a449CBB596ea384D90060a`;
 const ABI = [
@@ -42,6 +42,7 @@ export const useStorageContract = () => {
   };
 
   return {
+    storageContractAddress: ADDRESS,
     storageContract,
     storageContractWithSigner,
     storeSet,

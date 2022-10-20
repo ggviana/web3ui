@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { useWeb3Adapter } from '../Web3Adapter/useWeb3Adapter';
+import { useWeb3Adapter } from '../web3Adapter/useWeb3Adapter';
 
 const ADDRESS = `0xcB39CFDF6eB18C0006fB24831931253BfF3ba619`;
 const ABI = [
@@ -66,6 +66,7 @@ export const useOwnerContract = () => {
   };
 
   return {
+    ownerContractAddress: ADDRESS,
     ownerContract,
     ownerContractWithSigner,
     ownerSet,

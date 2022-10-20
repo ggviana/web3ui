@@ -6,12 +6,12 @@ import {
   HStack,
   Heading,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './components/ColorModeSwitcher';
-import WalletConnectButton from './components/WalletConnectButton';
-import { useWeb3Adapter } from './Web3Adapter/useWeb3Adapter';
-import ContractStorageView from './components/ContractStorageView';
-import ConnectionStatusView from './components/ConnectionStatusView';
-import ContractOwnerView from './components/ContractOwnerView';
+import { ThemeSwitch } from './designSystem/ThemeSwitch';
+import WalletConnectButton from './components/presentation/WalletConnectButton';
+import { useWeb3Adapter } from './web3Adapter/useWeb3Adapter';
+import ContractStorageView from './views/ContractStorageView';
+import ConnectionStatusView from './components/presentation/ConnectionStatusView';
+import ContractOwnerView from './views/ContractOwnerView';
 
 export const App = () => {
   const { connectedAddress, getWeb3Signer } = useWeb3Adapter();
@@ -26,10 +26,10 @@ export const App = () => {
             alignItems='center'
             height={20}
           >
-            <Heading as='h1' size='xl'>
+            <Heading as='h1' size='lg' fontWeight='light'>
               Smart Contract Tests
             </Heading>
-            <ColorModeSwitcher />
+            <ThemeSwitch />
           </HStack>
           <WalletConnectButton
             signerAddress={connectedAddress}

@@ -24,18 +24,15 @@ export const useWeb3Adapter = () => {
   };
 
   const getNetworkName = () => {
-    provider &&
-      provider.getNetwork().then((re) => setConnectedNetwork(re.name));
+    if (!provider) return;
+    provider.getNetwork().then((re) => setConnectedNetwork(re.name));
   };
 
   const getAddress = () => {
-    signer &&
-      signer
-        .getAddress()
-        .then((address) => {
-          setConnectedAddress(address);
-        })
-        .catch((err: any) => console.log(err));
+    if (!signer) return;
+    signer.getAddress().then((address) => {
+      setConnectedAddress(address);
+    });
   };
 
   const getWeb3Signer = async () => {
@@ -46,15 +43,18 @@ export const useWeb3Adapter = () => {
   };
 
   useEffect(() => {
+    // console.log('web3Adapter updated');
     getWeb3Provider();
   }, []);
 
   useEffect(() => {
+    // console.log('provider updated');
     getNetworkName();
     getWeb3Signer();
   }, [provider]);
 
   useEffect(() => {
+    // console.log('signer updated');
     getAddress();
   }, [signer]);
 

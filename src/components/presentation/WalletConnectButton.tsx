@@ -7,8 +7,6 @@ interface Props {
 }
 
 const WalletConnectButton: FC<Props> = ({ signerAddress, onClick }) => {
-  // const displayAddress = `...${signerAddress?.slice(-5).toUpperCase()}`;
-
   return (
     <Button
       alignSelf='flex-start'
