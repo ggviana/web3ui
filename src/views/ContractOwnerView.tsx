@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   Flex,
-  InputGroup,
   VStack,
   Text,
   Button,
@@ -10,11 +9,12 @@ import {
   Radio,
   Box,
   Link,
+  HStack,
 } from '@chakra-ui/react';
 import { FC, useEffect, useState } from 'react';
-import useOwnerContract from '../contracts/useOwnerContract';
+import useOwnerContract from '../adapters/ownerContractAdapter/useOwnerContract';
 import { generateAddressExplorerLink, shortenAddress } from '../utils/utils';
-import { useWeb3Adapter } from '../web3Adapter/useWeb3Adapter';
+import { useWeb3Adapter } from '../adapters/web3Adapter/useWeb3Adapter';
 import { useToast } from '../designSystem/useToast';
 
 const ADDRESS_OPTIONS = [
@@ -67,7 +67,7 @@ const ContractOwnerView: FC = () => {
       borderRadius='lg'
       overflow='hidden'
     >
-      <VStack width='100%' alignItems='start' gap={2}>
+      <VStack width='100%' alignItems='start' gap={1}>
         <Link
           color='teal.500'
           href={generateAddressExplorerLink(ownerContractAddress)}
@@ -79,44 +79,59 @@ const ContractOwnerView: FC = () => {
         >
           Owner contract
         </Link>
-        <InputGroup size='md' gap={4} alignItems={'center'}>
-          <Text fontSize='lg' width='30%'>
-            Event listener
-          </Text>
-          <Flex width='100%'>
-            <Text>{ownerValueLive}</Text>
-          </Flex>
-        </InputGroup>
-        <InputGroup size='md' gap={4} alignItems={'center'}>
-          <Text fontSize='lg' width='40%'>
-            Read owner
-          </Text>
-          <Flex width='100%'>
-            <Text>{ownerValue}</Text>
-          </Flex>
-          <Button width='30%' onClick={() => getCurrentOwner()}>
-            Read current owner
-          </Button>
-        </InputGroup>
-        <InputGroup size='md' gap={4} alignItems={'center'}>
-          <Text fontSize='lg' width='40%'>
-            Update current owner
-          </Text>
-          <Flex width='100%'>
-            <RadioGroup onChange={setAddressOption} value={addressOption}>
-              <Stack direction='row' width='100%'>
-                {ADDRESS_OPTIONS.map((address) => (
-                  <Radio value={address} key={address}>
-                    {shortenAddress(address)}
-                  </Radio>
-                ))}
-              </Stack>
-            </RadioGroup>
-          </Flex>
-          <Button width='30%' onClick={() => updateOwner()}>
-            Update Owner
-          </Button>
-        </InputGroup>
+
+        <HStack width='100%' alignItems='center'>
+          <HStack width='80%' alignItems='center'>
+            <Text fontSize='lg' width='30%'>
+              Owner change event
+            </Text>
+            <Flex width='70%'>
+              <Text>{ownerValueLive}</Text>
+            </Flex>
+          </HStack>
+          <HStack width='20%'></HStack>
+        </HStack>
+
+        <HStack width='100%' alignItems='center'>
+          <HStack width='80%' alignItems='center'>
+            <Text fontSize='lg' width='30%'>
+              Read owner
+            </Text>
+            <Flex width='70%'>
+              <Text>{ownerValue}</Text>
+            </Flex>
+          </HStack>
+          <HStack width='20%'>
+            <Button width='100%' onClick={() => getCurrentOwner()}>
+              Read current owner
+            </Button>
+          </HStack>
+        </HStack>
+
+        <HStack width='100%' alignItems='center'>
+          <HStack width='80%' alignItems='center'>
+            <Text fontSize='lg' width='30%'>
+              Update owner
+            </Text>
+            <Flex width='70%'>
+              <RadioGroup onChange={setAddressOption} value={addressOption}>
+                <Stack direction='row' width='100%'>
+                  {ADDRESS_OPTIONS.map((address) => (
+                    <Radio value={address} key={address}>
+                      {shortenAddress(address)}
+                    </Radio>
+                  ))}
+                </Stack>
+              </RadioGroup>
+            </Flex>
+          </HStack>
+
+          <HStack width='20%'>
+            <Button width='100%' onClick={() => updateOwner()}>
+              Update Owner
+            </Button>
+          </HStack>
+        </HStack>
       </VStack>
     </Box>
   );

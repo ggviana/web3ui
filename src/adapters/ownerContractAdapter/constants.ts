@@ -1,8 +1,6 @@
-import { ethers } from 'ethers';
-import { useWeb3Adapter } from '../web3Adapter/useWeb3Adapter';
+export const ADDRESS = `0xcB39CFDF6eB18C0006fB24831931253BfF3ba619`;
 
-const ADDRESS = `0xcB39CFDF6eB18C0006fB24831931253BfF3ba619`;
-const ABI = [
+export const ABI = [
   {
     inputs: [
       {
@@ -54,23 +52,3 @@ const ABI = [
     type: 'function',
   },
 ];
-
-export const useOwnerContract = () => {
-  const { signer, provider } = useWeb3Adapter();
-
-  const ownerContract = new ethers.Contract(ADDRESS, ABI, provider);
-  const ownerContractWithSigner = signer && ownerContract.connect(signer);
-
-  const ownerSet = (address: string) => {
-    ownerContractWithSigner && ownerContractWithSigner.changeOwner(address);
-  };
-
-  return {
-    ownerContractAddress: ADDRESS,
-    ownerContract,
-    ownerContractWithSigner,
-    ownerSet,
-  };
-};
-
-export default useOwnerContract;

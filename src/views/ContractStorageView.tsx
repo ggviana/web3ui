@@ -1,17 +1,17 @@
 import { FC, useState } from 'react';
 import {
   Flex,
-  InputGroup,
   VStack,
   Text,
   Button,
   Input,
   Box,
   Link,
+  HStack,
 } from '@chakra-ui/react';
-import useStorageContract from '../contracts/useStorageContract';
+import useStorageContract from '../adapters/storageContractAdapter/useStorageContract';
 import { generateAddressExplorerLink } from '../utils/utils';
-import { useWeb3Adapter } from '../web3Adapter/useWeb3Adapter';
+import { useWeb3Adapter } from '../adapters/web3Adapter/useWeb3Adapter';
 import { useToast } from '../designSystem/useToast';
 import { useDebounce } from '../utils/useDebounce';
 
@@ -59,7 +59,7 @@ const ContractStorageView: FC = () => {
       borderRadius='lg'
       overflow='hidden'
     >
-      <VStack width='100%' alignItems='start' gap={2}>
+      <VStack width='100%' alignItems='start' gap={1}>
         <Link
           color='teal.500'
           href={generateAddressExplorerLink(storageContractAddress)}
@@ -71,29 +71,42 @@ const ContractStorageView: FC = () => {
         >
           Storage contract
         </Link>
-        <InputGroup size='md' gap={4} alignItems={'center'}>
-          <Text fontSize='lg' width='40%'>
-            Read store value
-          </Text>
-          <Flex width='100%'>
-            <Text>{storeValue}</Text>
-          </Flex>
-          <Button width='30%' onClick={() => readStoreValue()}>
-            Read store value
-          </Button>
-        </InputGroup>
-        <InputGroup size='md' gap={4} alignItems={'center'}>
-          <Text fontSize='lg' width='40%'>
-            Update store value
-          </Text>
-          <Input
-            placeholder='Enter number'
-            onChange={(e) => handleStoreInputValueChange(e.target.value)}
-          />
-          <Button width='30%' onClick={() => updateStoreValue()}>
-            Update store value
-          </Button>
-        </InputGroup>
+
+        <HStack width='100%' alignItems='center'>
+          <HStack width='80%' alignItems='center'>
+            <Text fontSize='lg' width='30%'>
+              Read store value
+            </Text>
+            <Flex width='70%'>
+              <Text>{storeValue}</Text>
+            </Flex>
+          </HStack>
+          <HStack width='20%'>
+            <Button width='100%' onClick={() => readStoreValue()}>
+              Read store value
+            </Button>
+          </HStack>
+        </HStack>
+
+        <HStack width='100%' alignItems='center'>
+          <HStack width='80%' alignItems='center'>
+            <Text fontSize='lg' width='30%'>
+              Update store value
+            </Text>
+            <Flex width='70%'>
+              <Input
+                placeholder='Enter number'
+                onChange={(e) => handleStoreInputValueChange(e.target.value)}
+              />
+            </Flex>
+          </HStack>
+
+          <HStack width='20%'>
+            <Button width='100%' onClick={() => updateStoreValue()}>
+              Update store value
+            </Button>
+          </HStack>
+        </HStack>
       </VStack>
     </Box>
   );

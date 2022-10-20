@@ -9,7 +9,8 @@ interface Props {
 const WalletConnectButton: FC<Props> = ({ signerAddress, onClick }) => {
   return (
     <Button
-      alignSelf='flex-start'
+      width='100%'
+      // alignSelf='flex-end'
       size='lg'
       colorScheme={`${signerAddress ? 'teal' : 'pink'}`}
       onClick={onClick}
