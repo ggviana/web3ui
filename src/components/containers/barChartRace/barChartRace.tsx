@@ -1,14 +1,14 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, LegacyRef } from 'react';
 import { Runtime, Inspector } from '@observablehq/runtime';
 import notebook from '283f8a06a6d1ba0f';
 import { Link, Text, Container, Box } from '@chakra-ui/react';
 
-function Notebook() {
+function BarChartRace() {
   const chartRef = useRef();
 
   useEffect(() => {
     const runtime = new Runtime();
-    runtime.module(notebook, (name) => {
+    runtime.module(notebook, (name: string) => {
       if (name === 'chart') return new Inspector(chartRef.current);
     });
     return () => runtime.dispose();
@@ -23,12 +23,11 @@ function Notebook() {
       overflow='hidden'
     >
       <Text fontSize='lg'>
-        Historical token values in USD from March 2020 until October 2022
+        Historical values in USD (March 2020 until October 2022)
       </Text>
       <Container
         maxWidth='container.xl'
-        ref={chartRef}
-        // backgroundColor='whiteAlpha.400'
+        ref={chartRef as unknown as LegacyRef<HTMLDivElement> | undefined}
         borderRadius='lg'
         fontSize='xl'
         marginY={2}
@@ -57,4 +56,4 @@ function Notebook() {
   );
 }
 
-export default Notebook;
+export default BarChartRace;

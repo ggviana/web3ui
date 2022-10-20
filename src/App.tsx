@@ -3,7 +3,7 @@ import { ThemeSwitch } from './designSystem/ThemeSwitch';
 import ContractStorageView from './views/ContractStorageView';
 import ConnectionStatusView from './views/ConnectionStatusView';
 import ContractOwnerView from './views/ContractOwnerView';
-import Notebook from './components/containers/bars.js';
+import BarChartRace from './components/containers/barChartRace/barChartRace';
 
 export const App = () => {
   return (
@@ -22,7 +22,7 @@ export const App = () => {
       <Heading as='h1' size='lg' fontWeight='light' marginY={4}>
         D3 Visualization
       </Heading>
-      <Notebook />
+      <BarChartRace />
       <VStack spacing={6}>
         <Heading
           as='h1'
