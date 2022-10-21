@@ -37,17 +37,23 @@ const ContractOwnerView: FC = () => {
     ownerContract
       .getOwner()
       .then((re: any) => setOwnerValue(re.toString()))
-      .catch(() =>
+      .then(() => showToast('success', 'Current owner read successfully'))
+      .catch((err: any) =>
         showToast(
-          'error',
-          'Something went wrong',
-          'Make sure Metamask is connected to Goerli test network.'
+          'warning',
+          'Could not fetch current owner',
+          err.reason || 'Make sure you are connected to Goerli network'
         )
       );
 
   const updateOwner = () => {
     !addressOption && showToast('warning', 'Select new owner address');
-    addressOption && ownerSet(addressOption);
+    addressOption &&
+      ownerSet(addressOption)
+        .then(() => showToast('success', 'New owner set successfully'))
+        .catch((err: any) =>
+          showToast('warning', 'Could not set new owner', err.reason)
+        );
   };
 
   useEffect(() => {

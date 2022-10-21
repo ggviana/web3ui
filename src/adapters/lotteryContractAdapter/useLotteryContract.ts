@@ -10,9 +10,9 @@ export const useLotteryContract = () => {
 
   const entryAdmission = ethers.utils.parseUnits('0.001', 18);
 
-  const joinLottery = () => {
-    lotteryContractWithSigner &&
-      lotteryContractWithSigner.join({ value: entryAdmission });
+  const joinLottery = async () => {
+    if (!lotteryContractWithSigner) return;
+    return await lotteryContractWithSigner.join({ value: entryAdmission });
   };
 
   const getParticipantsList = async () => {

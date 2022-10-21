@@ -8,8 +8,9 @@ export const useStorageContract = () => {
   const storageContract = new ethers.Contract(ADDRESS, ABI, provider);
   const storageContractWithSigner = signer && storageContract.connect(signer);
 
-  const storeSet = (number: number) => {
-    storageContractWithSigner && storageContractWithSigner.store(number);
+  const storeSet = async (number: number) => {
+    if (!storageContractWithSigner) return;
+    return await storageContractWithSigner.store(number);
   };
 
   return {

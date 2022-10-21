@@ -36,11 +36,12 @@ const ContractStorageView: FC = () => {
     storageContract
       .retrieve()
       .then((re: any) => setStoreValue(re.toString()))
-      .catch(() =>
+      .then(() => showToast('success', 'Store value read successfully'))
+      .catch((err: any) =>
         showToast(
-          'error',
-          'Something went wrong',
-          'Make sure Metamask is connected to Goerli test network.'
+          'warning',
+          'Could not read store value',
+          err.reason || 'Make sure you are connected to Goerli network'
         )
       );
 
@@ -48,7 +49,12 @@ const ContractStorageView: FC = () => {
     if (!connectedAddress)
       showToast('error', 'Not connected to Goerli test network');
     if (!storeInputValue) showToast('warning', 'Enter a number');
-    storeInputValue && storeSet(storeInputValue);
+    storeInputValue &&
+      storeSet(storeInputValue)
+        .then(() => showToast('success', 'New store value set successfully'))
+        .catch((err: any) =>
+          showToast('warning', 'Could not set new store value', err.reason)
+        );
   };
 
   return (

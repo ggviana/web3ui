@@ -16,7 +16,11 @@ const ContractLotteryView: FC = () => {
   const payParticipationFee = () => {
     if (!connectedAddress)
       showToast('error', 'Not connected to Goerli test network');
-    joinLottery();
+    joinLottery()
+      .then(() => console.log(showToast('success', 'Joined successfully')))
+      .catch((err: any) =>
+        showToast('warning', 'Something went wrong', err.reason)
+      );
   };
 
   const getParticipants = () => {
@@ -24,11 +28,14 @@ const ContractLotteryView: FC = () => {
       showToast('error', 'Not connected to Goerli test network');
     getParticipantsList()
       .then((re: any) => setParticipants(re))
-      .catch(() =>
+      .then(() =>
+        showToast('success', 'Participants list fetched successfully')
+      )
+      .catch((err: any) =>
         showToast(
-          'error',
-          'Something went wrong',
-          'Make sure Metamask is connected to Goerli test network.'
+          'warning',
+          'Could not fetch participants lists',
+          err.reason || 'Make sure you are connected to Goerli network'
         )
       );
   };

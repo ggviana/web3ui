@@ -8,8 +8,9 @@ export const useOwnerContract = () => {
   const ownerContract = new ethers.Contract(ADDRESS, ABI, provider);
   const ownerContractWithSigner = signer && ownerContract.connect(signer);
 
-  const ownerSet = (address: string) => {
-    ownerContractWithSigner && ownerContractWithSigner.changeOwner(address);
+  const ownerSet = async (address: string) => {
+    if (!ownerContractWithSigner) return;
+    return await ownerContractWithSigner.changeOwner(address);
   };
 
   return {
