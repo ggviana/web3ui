@@ -4,6 +4,7 @@ import ContractStorageView from './views/ContractStorageView';
 import ConnectionStatusView from './views/ConnectionStatusView';
 import ContractOwnerView from './views/ContractOwnerView';
 import BarChartRaceView from './views/BarChartRaceView';
+import ContractLotteryView from './views/ContractLotteryView';
 
 export const App = () => {
   return (
@@ -36,6 +37,7 @@ export const App = () => {
         <ConnectionStatusView />
         <ContractStorageView />
         <ContractOwnerView />
+        <ContractLotteryView />
       </VStack>
     </Container>
   );
