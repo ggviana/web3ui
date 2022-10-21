@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
+import { useToast } from '../../designSystem/useToast';
 
 export const useWeb3Adapter = () => {
+  const { showToast } = useToast();
   const [provider, setProvider] = useState<
     ethers.providers.Web3Provider | undefined
   >(undefined);
@@ -43,6 +45,18 @@ export const useWeb3Adapter = () => {
   useEffect(() => {
     getNetworkName();
     getWeb3Signer();
+    if (provider) {
+      if (connectedNetwork) {
+        if (connectedNetwork.toLowerCase() === 'goerli') {
+          showToast('success', 'Connected to Goerli');
+        } else
+          showToast(
+            'info',
+            'Not connected to Goerli',
+            'Change your Metamask network to Goerli testnet'
+          );
+      }
+    }
   }, [provider]);
 
   useEffect(() => {

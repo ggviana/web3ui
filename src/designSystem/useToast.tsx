@@ -4,7 +4,7 @@ type Status = 'success' | 'error' | 'warning' | 'info';
 type Message = string;
 type Title = string;
 
-const TOAST_DURATION_MILLIS = 7000;
+const TOAST_DURATION_MILLIS = 3000;
 
 export const useToast = () => {
   const toast = useToastChakra();
@@ -16,6 +16,10 @@ export const useToast = () => {
       status: status,
       duration: TOAST_DURATION_MILLIS,
       isClosable: true,
+      position: 'bottom-left',
+      containerStyle: {
+        width: '30%',
+      },
     });
   };
 

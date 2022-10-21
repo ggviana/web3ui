@@ -44,22 +44,3 @@ export const Web3Provider = ({ children }: { children: any }) => {
     </Web3Context.Provider>
   );
 };
-
-// // And use it like;
-
-// const App = () => {
-//   return (
-//     <Web3Provider>
-//       <div>
-//         <p>This is my app!</p>
-//         <Main />
-//       </div>
-//     </Web3Provider>
-//   );
-// };
-
-// const Main = () => {
-//   const { web3State, setWeb3State } = useWeb3Context();
-
-//   return <p>{web3State}</p>;
-// };
