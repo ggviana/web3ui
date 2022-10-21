@@ -43,7 +43,7 @@ function BarChartRaceView() {
         , Bar Chart Race forked & customized at Observable{' '}
         <Link
           color='teal.500'
-          href='https://observablehq.com/d/283f8a06a6d1ba0f'
+          href='https://observablehq.com/d/0b3a144e9379526b'
           fontWeight='normal'
           target='blank'
         >
