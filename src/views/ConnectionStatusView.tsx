@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { VStack, Text, HStack, Box } from '@chakra-ui/react';
-import { useWeb3Adapter } from '../adapters/web3Adapter/useWeb3Adapter';
 import { capitalizeFirstLetter } from '../utils/utils';
 import WalletConnectButton from '../components/presentation/WalletConnectButton';
+import { useWeb3Context } from '../adapters/web3Adapter/web3Adapter';
 
 interface Props {}
 
 const ConnectionStatusView: FC<Props> = () => {
-  const { connectedNetwork, connectedAddress, getWeb3Signer } =
-    useWeb3Adapter();
+  const { connectedNetwork, connectedAddress, getWeb3Provider } =
+    useWeb3Context();
 
   return (
     <Box
@@ -43,7 +43,7 @@ const ConnectionStatusView: FC<Props> = () => {
         <VStack width='20%'>
           <WalletConnectButton
             signerAddress={connectedAddress}
-            onClick={() => getWeb3Signer()}
+            onClick={() => getWeb3Provider && getWeb3Provider()}
           />
         </VStack>
       </HStack>

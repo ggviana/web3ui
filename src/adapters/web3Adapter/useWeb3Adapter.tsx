@@ -16,10 +16,8 @@ export const useWeb3Adapter = () => {
     undefined
   );
 
-  const getWeb3Provider = async () => {
-    const currentProvider = await new ethers.providers.Web3Provider(
-      window.ethereum
-    );
+  const getWeb3Provider = () => {
+    const currentProvider = new ethers.providers.Web3Provider(window.ethereum);
     setProvider(currentProvider);
   };
 
@@ -43,23 +41,16 @@ export const useWeb3Adapter = () => {
   };
 
   useEffect(() => {
-    // console.log('web3Adapter updated');
-    getWeb3Provider();
-  }, []);
-
-  useEffect(() => {
-    // console.log('provider updated');
     getNetworkName();
     getWeb3Signer();
   }, [provider]);
 
   useEffect(() => {
-    // console.log('signer updated');
     getAddress();
   }, [signer]);
 
   return {
-    getWeb3Signer,
+    getWeb3Provider,
     connectedNetwork,
     connectedAddress,
     provider,

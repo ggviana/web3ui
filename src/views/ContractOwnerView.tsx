@@ -14,8 +14,8 @@ import {
 import { FC, useEffect, useState } from 'react';
 import useOwnerContract from '../adapters/ownerContractAdapter/useOwnerContract';
 import { generateAddressExplorerLink, shortenAddress } from '../utils/utils';
-import { useWeb3Adapter } from '../adapters/web3Adapter/useWeb3Adapter';
 import { useToast } from '../designSystem/useToast';
+import { useWeb3Context } from '../adapters/web3Adapter/web3Adapter';
 
 const ADDRESS_OPTIONS = [
   '0x86661b28B520aD314c6EEf28905234DEA0eB4dc3',
@@ -23,7 +23,7 @@ const ADDRESS_OPTIONS = [
 ];
 
 const ContractOwnerView: FC = () => {
-  const { provider } = useWeb3Adapter();
+  const { provider } = useWeb3Context();
   const { ownerContract, ownerContractAddress, ownerSet } = useOwnerContract();
   const { showToast } = useToast();
 

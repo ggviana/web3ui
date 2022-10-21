@@ -1,6 +1,6 @@
 import { useRef, useEffect, LegacyRef } from 'react';
 import { Runtime, Inspector } from '@observablehq/runtime';
-import barChartRaceDef from '../components/containers/barChartRace/barChartRaceDef';
+import barChartRaceDef from '../components/presentation/barChartRace/barChartRaceDef';
 import { Link, Text, Container, Box } from '@chakra-ui/react';
 
 function BarChartRaceView() {
