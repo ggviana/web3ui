@@ -55,7 +55,7 @@ async function* _chart(
 }
 
 function _duration() {
-  return 1;
+  return 100;
 }
 
 function _n() {
