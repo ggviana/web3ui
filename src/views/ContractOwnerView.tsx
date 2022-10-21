@@ -23,7 +23,7 @@ const ADDRESS_OPTIONS = [
 ];
 
 const ContractOwnerView: FC = () => {
-  const { provider } = useWeb3Context();
+  const { provider, connectedAddress } = useWeb3Context();
   const { ownerContract, ownerContractAddress, ownerSet } = useOwnerContract();
   const { showToast } = useToast();
 
@@ -47,8 +47,10 @@ const ContractOwnerView: FC = () => {
       );
 
   const updateOwner = () => {
-    !addressOption && showToast('warning', 'Select new owner address');
-    addressOption &&
+    if (!connectedAddress)
+      showToast('error', 'Not connected to Goerli test network');
+    if (!addressOption) showToast('warning', 'Select new owner address');
+    if (connectedAddress && addressOption)
       ownerSet(addressOption)
         .then(() => showToast('success', 'New owner set successfully'))
         .catch((err: any) =>
@@ -120,7 +122,11 @@ const ContractOwnerView: FC = () => {
               Update owner
             </Text>
             <Flex width='70%'>
-              <RadioGroup onChange={setAddressOption} value={addressOption}>
+              <RadioGroup
+                onChange={setAddressOption}
+                value={addressOption}
+                colorScheme='teal'
+              >
                 <Stack direction='row' width='100%'>
                   {ADDRESS_OPTIONS.map((address) => (
                     <Radio value={address} key={address}>

@@ -28,12 +28,7 @@ const ConnectionStatusView: FC<Props> = () => {
               {connectedNetwork ? capitalizeFirstLetter(connectedNetwork) : ''}
             </Text>
           </HStack>
-          <HStack
-            width='100%'
-            height='2.5rem'
-            alignItems='center'
-            // backgroundColor='red'
-          >
+          <HStack width='100%' height='2.5rem' alignItems='center'>
             <Text fontSize='lg' width='30%'>
               Address
             </Text>

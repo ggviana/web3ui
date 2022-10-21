@@ -49,7 +49,7 @@ const ContractStorageView: FC = () => {
     if (!connectedAddress)
       showToast('error', 'Not connected to Goerli test network');
     if (!storeInputValue) showToast('warning', 'Enter a number');
-    storeInputValue &&
+    if (connectedAddress && storeInputValue)
       storeSet(storeInputValue)
         .then(() => showToast('success', 'New store value set successfully'))
         .catch((err: any) =>

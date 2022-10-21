@@ -1,6 +1,14 @@
 import { FC, useState } from 'react';
-import { VStack, Text, Button, Box, Link, HStack } from '@chakra-ui/react';
-import { generateAddressExplorerLink } from '../utils/utils';
+import {
+  VStack,
+  Text,
+  Button,
+  Box,
+  Link,
+  HStack,
+  Badge,
+} from '@chakra-ui/react';
+import { generateAddressExplorerLink, shortenAddress } from '../utils/utils';
 import { useToast } from '../designSystem/useToast';
 import { useWeb3Context } from '../adapters/web3Adapter/web3Adapter';
 import useLotteryContract from '../adapters/lotteryContractAdapter/useLotteryContract';
@@ -62,16 +70,18 @@ const ContractLotteryView: FC = () => {
         </Link>
 
         <HStack width='100%' alignItems='center'>
-          <Text fontSize='sm' width='80%'>
+          <HStack width='80%'>
             {participants
               .filter(
                 (item: string) =>
                   item !== '0x0000000000000000000000000000000000000000'
               )
               .map((item: string) => (
-                <p>{item}</p>
+                <Badge colorScheme='teal' variant='solid'>
+                  {shortenAddress(item)}
+                </Badge>
               ))}
-          </Text>
+          </HStack>
           <HStack width='20%'>
             <Button width='100%' onClick={() => getParticipants()}>
               Get Participants
