@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { VStack, Text, HStack, Box } from '@chakra-ui/react';
+import { VStack, Text, Stack } from '@chakra-ui/react';
 import { capitalizeFirstLetter } from '../utils/utils';
 import WalletConnectButton from '../components/presentation/WalletConnectButton';
 import { useWeb3Context } from '../adapters/web3Adapter/web3Adapter';
@@ -11,38 +11,54 @@ const ConnectionStatusView: FC<Props> = () => {
     useWeb3Context();
 
   return (
-    <Box
+    <VStack
       width='100%'
       padding={4}
       backgroundColor='blackAlpha.300'
       borderRadius='lg'
       overflow='hidden'
     >
-      <HStack>
-        <VStack width='80%' alignItems='start'>
-          <HStack width='100%' height='2.5rem' alignItems='center'>
-            <Text fontSize='lg' width='30%'>
-              Network
-            </Text>
-            <Text width='70%'>
-              {connectedNetwork ? capitalizeFirstLetter(connectedNetwork) : ''}
-            </Text>
-          </HStack>
-          <HStack width='100%' height='2.5rem' alignItems='center'>
-            <Text fontSize='lg' width='30%'>
-              Address
-            </Text>
-            <Text width='70%'>{connectedAddress && connectedAddress}</Text>
-          </HStack>
-        </VStack>
-        <VStack width='20%'>
+      <Stack
+        direction={{ base: 'column', md: 'row' }}
+        width='100%'
+        alignItems={{ base: 'start', md: 'center' }}
+        gap={1}
+      >
+        <Text
+          fontSize='lg'
+          width={{ base: '100%', md: '24%' }}
+          fontWeight={{ base: 'bold', md: 'normal' }}
+        >
+          Network
+        </Text>
+        <Text width={{ base: '100%', md: '76%' }}>
+          {connectedNetwork ? capitalizeFirstLetter(connectedNetwork) : ''}
+        </Text>
+      </Stack>
+      <Stack
+        direction={{ base: 'column', md: 'row' }}
+        width='100%'
+        alignItems={{ base: 'start', md: 'center' }}
+        gap={1}
+      >
+        <Text
+          fontSize='lg'
+          width={{ base: '100%', md: '24%' }}
+          fontWeight={{ base: 'bold', md: 'normal' }}
+        >
+          Address
+        </Text>
+        <Text width={{ base: '100%', md: '56%' }}>
+          {connectedAddress && connectedAddress}
+        </Text>
+        <VStack width={{ base: '100%', md: '20%' }}>
           <WalletConnectButton
             signerAddress={connectedAddress}
             onClick={() => getWeb3Provider && getWeb3Provider()}
           />
         </VStack>
-      </HStack>
-    </Box>
+      </Stack>
+    </VStack>
   );
 };
 

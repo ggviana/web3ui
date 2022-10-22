@@ -7,6 +7,7 @@ import {
   Link,
   HStack,
   Badge,
+  Stack,
 } from '@chakra-ui/react';
 import { generateAddressExplorerLink, shortenAddress } from '../utils/utils';
 import { useToast } from '../designSystem/useToast';
@@ -69,8 +70,16 @@ const ContractLotteryView: FC = () => {
           Participation fee contract
         </Link>
 
-        <HStack width='100%' alignItems='center'>
-          <HStack width='80%'>
+        <Stack
+          direction={{ base: 'column', md: 'row' }}
+          width='100%'
+          alignItems={{ base: 'start', md: 'center' }}
+          gap={1}
+        >
+          <Stack
+            direction={{ base: 'column', md: 'row' }}
+            width={{ base: '100%', md: '80%' }}
+          >
             {participants
               .filter(
                 (item: string) =>
@@ -81,25 +90,42 @@ const ContractLotteryView: FC = () => {
                   {shortenAddress(item)}
                 </Badge>
               ))}
-          </HStack>
-          <HStack width='20%'>
-            <Button width='100%' onClick={() => getParticipants()}>
+          </Stack>
+          <HStack width={{ base: '100%', md: '20%' }}>
+            <Button
+              width='100%'
+              onClick={() => getParticipants()}
+              whiteSpace='normal'
+              fontSize={{ base: '0.8rem', md: '1rem' }}
+              lineHeight={{ base: '0.8rem', md: '1.2rem' }}
+            >
               Get Participants
             </Button>
           </HStack>
-        </HStack>
+        </Stack>
 
-        <HStack width='100%' alignItems='center'>
-          <Text fontSize='lg' width='80%'>
+        <Stack
+          direction={{ base: 'column', md: 'row' }}
+          width='100%'
+          alignItems={{ base: 'start', md: 'center' }}
+          gap={1}
+        >
+          <Text fontSize='lg' width={{ base: '100%', md: '80%' }}>
             Required fee 0.001 ETH to join lottery. Open for up to 10
             participants.
           </Text>
-          <HStack width='20%'>
-            <Button width='100%' onClick={() => payParticipationFee()}>
+          <HStack width={{ base: '100%', md: '20%' }}>
+            <Button
+              width='100%'
+              onClick={() => payParticipationFee()}
+              whiteSpace='normal'
+              fontSize={{ base: '0.8rem', md: '1rem' }}
+              lineHeight={{ base: '0.8rem', md: '1.2rem' }}
+            >
               Pay Fee
             </Button>
           </HStack>
-        </HStack>
+        </Stack>
       </VStack>
     </Box>
   );

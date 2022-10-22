@@ -6,13 +6,20 @@ interface Props {
   onClick: () => void;
 }
 
-const WalletConnectButton: FC<Props> = ({ signerAddress, onClick }) => {
+const WalletConnectButton: FC<Props> = ({
+  signerAddress,
+  onClick,
+  ...rest
+}) => {
   return (
     <Button
       width='100%'
-      size='lg'
       colorScheme={`${signerAddress ? 'teal' : 'pink'}`}
       onClick={onClick}
+      whiteSpace='normal'
+      fontSize={{ base: '0.8rem', md: '1rem' }}
+      lineHeight={{ base: '0.8rem', md: '1.2rem' }}
+      {...rest}
     >
       {signerAddress ? 'Connected' : 'Connect Wallet'}
     </Button>
